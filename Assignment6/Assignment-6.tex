@@ -143,27 +143,54 @@ f_{XY}(x,y)=  \begin{cases}
 \end{align}
 The probability $P(X+Y \leq 1)$=
 \section*{Solution}
-
-We know that
-\begin{align}\label{1}
-    P((X,Y)\in A)=\iint\limits _{A}f_{XY}(x,y) dx dy \qquad  
+Finding the marginal Pdf of X and Y
+\begin{align}
+f_{X}(x)&=\int_{0}^{1} f_{X,Y}(x,y)\;dy\\
+&=\int_{0}^{1} (x+y)\;dy\\
+f_{Y}(y)&=\int_{0}^{1} f_{X,Y}(x,y)\;dx\\
+&=\int_{0}^{1} (x+y)\;dx\\
+\end{align}
+We get
+\begin{align}
+f_{X}(x)=  \begin{cases}
+    x+1/2 & 0\leq x \leq 1 \\
+    0 & otherwise
+\end{cases}    
 \end{align}
 \begin{align}
-    0<X+Y\leq 1  \implies 0<Y\leq 1-X
+f_{Y}(y)=  \begin{cases}
+    y+1/2 & 0\leq y \leq 1 \\
+    0 & otherwise
+\end{cases}
 \end{align}
-so using \eqref{1}
+Finding the marginal Cdf of Y
+\begin{align}
+F_{Y}(y)&=\int _{0 }^{y}f_{Y}(t)\,dt \\ 
+&=\int _{0 }^{y}\brak{t+\frac{1}{2}}\,dt \\ 
+\end{align}
+We get 
+\begin{align}
+ F_{Y}(y)=  \begin{cases}
+    0  & y\leq 0 \\  
+    \frac{y^2+y}{2} & 0\leq y \leq 1 \\
+    1 & otherwise
+\end{cases}   
+\end{align}
 \begin{align}
 \pr{X+Y\leq 1}&=\pr{Y\leq 1-X} \\
-&=\int_{0}^{1} \int_{0}^{1-x}f_{XY}(x,y) \,dy\,dx
+&=\int_{0}^{1} \pr{Y \leq 1-x|X=x}f_X(x)\;dx
 \\
-&=\int_{0}^{1} \int_{0}^{1-x}(x+y)\,dy\,dx
+&=\int_{0}^{1} F_Y(1-x)\times f_X(x)\;dx
 \\
-&=\int_{0}^{1} \sbrak{\brak{\frac{y^2}{2}+xy}} _{0}^{1-x}\,dx
+&=\int_{0}^{1}F_Y(x)\times f_X(1-x)\;dx 
 \\
-&=\int_{0}^{1} \brak{\frac{1-x^2}{2} }\,dx
+&=\int_{0}^{1} \brak{\frac{x+x^2}{2} }\brak{\frac{3-2x}{2}}\;dx
 \\
-&= \sbrak{\brak{\dfrac{x}{2}-\frac{x^3}{6}}}_{0}^{1}\,dx
+&=\int_{0}^{1} \brak{\frac{3x+x^2-2x^3}{4} }\;dx
+\\
+&= \frac{1}{4}\sbrak{{\frac{3x^2}{2}+\frac{x^3}{3}-\frac{2x^4}{4}}}_{0}^{1}
 \\
 &=\frac{1}{3}
 \end{align}
 \end{document}
+ 
